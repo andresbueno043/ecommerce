@@ -2,24 +2,32 @@ import product from "@/sanity_ecommerce/schemas/product";
 import React from "react";
 import { Product, FooterBanner, HeroBanner } from "@/components";
 import { client } from "@/lib/client";
+import { type } from "os";
 
-const Home = () => {
+type Props = {
+  products: Product[],
+  bannerData: BannerData;
+}
+
+const Home = ({ products, bannerData }: Props) => {
   return (
     <>
-      <HeroBanner />
+      <HeroBanner heroBanner={bannerData}/>
       <div className="text-center text-[#324d67] my-[40px] mx-0">
         <h2 className="text-[40px] font-bold">Best selling products</h2>
         <p className="text-[16px] font-extralight">
           Speakers of many variations
         </p>
       </div>
-      <div className="flex flex-wrap justify-center gap-[15px] mt-5 w-full">{["Product 1", "Product 2"].map((product) => product)}</div>
+      <div className="flex flex-wrap justify-center gap-[15px] mt-5 w-full">
+        {products?.map((product) => product.name)}
+      </div>
       <FooterBanner />
     </>
   );
 };
 
-export const getServerSideProps =  async () => {
+export const getServerSideProps = async () => {
   const query: string = '*[_type=="product"]';
   const products = await client.fetch(query);
 
@@ -28,9 +36,10 @@ export const getServerSideProps =  async () => {
 
   return {
     props: {
-      products, bannerData
-    }
-  }
-}
+      products,
+      bannerData,
+    },
+  };
+};
 
 export default Home;
