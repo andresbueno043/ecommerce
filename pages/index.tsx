@@ -22,7 +22,7 @@ const Home = ({ products, bannerData }: Props) => {
       <div className="flex flex-wrap justify-center gap-[15px] mt-5 w-full">
         {products?.map((product) => (<Product key={product._id} product={product}/>))}
       </div>
-      <FooterBanner />
+      <FooterBanner footerBanner={bannerData} />
     </>
   );
 };
