@@ -20,7 +20,7 @@ const Home = ({ products, bannerData }: Props) => {
         </p>
       </div>
       <div className="flex flex-wrap justify-center gap-[15px] mt-5 w-full">
-        {products?.map((product) => product.name)}
+        {products?.map((product) => (<Product key={product._id} product={product}/>))}
       </div>
       <FooterBanner />
     </>
