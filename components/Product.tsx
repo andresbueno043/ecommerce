@@ -21,7 +21,9 @@ const Product = ({
             alt=""
           />
           <p className="font-medium">{name}</p>
-          <p className="product-price font-extrabold mt-0 text-black">${price}</p>
+          <p className="product-price font-extrabold mt-0 text-black">
+            ${price}
+          </p>
         </div>
       </Link>
     </div>
